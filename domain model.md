@@ -42,7 +42,11 @@ DockingStation <--bikes--> @bikes
 ```
 ## Feature test
 > require './lib/docking_station.rb'
+
 > station = DockingStation.new
+
 > bike = station.release_bike
+
 > bike.working?
+
 > station.dock(bike)
