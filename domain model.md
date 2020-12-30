@@ -50,3 +50,5 @@ DockingStation <--bikes--> @bikes
 > bike.working?
 
 > station.dock(bike)
+
+> station.bikes
