@@ -1,15 +1,22 @@
 require 'docking_station'
 
 describe DockingStation do
-  describe '.bikes' do
-    it 'responds to .bikes method' do
-      expect(subject).to respond_to(:bikes)
+  describe 'initialization' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
     end
 
-    it 'docked bike can be viewed later' do
-      bike = Bike.new
-      subject.dock(bike)
-      expect(subject.bikes).to eq([bike])
+    subject { DockingStation.new }
+    let(:bike) { Bike.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times { subject.dock(bike) }
+      expect{ subject.dock(bike) }.to raise_error('Station is full')
+    end
+
+    it 'allows user to set capacity of new station' do
+      station = DockingStation.new(21)
+      21.times { station.dock(Bike.new) }
+      expect{ station.dock(Bike.new) }.to raise_error('Station is full')
     end
   end
 
@@ -40,7 +47,7 @@ describe DockingStation do
     end
 
     it 'raises error when docking in full station' do
-      DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
+      subject.capacity.times { subject.dock(Bike.new) }
       expect{subject.dock(Bike.new)}.to raise_error('Station is full')
     end
   end

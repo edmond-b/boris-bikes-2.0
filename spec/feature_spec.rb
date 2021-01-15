@@ -2,7 +2,7 @@
 #
 # require './lib/docking_station.rb'
 #
-# station = DockingStation.new
+# station = DockingStation.new(21)
 #
 # bike = Bike.new
 #
