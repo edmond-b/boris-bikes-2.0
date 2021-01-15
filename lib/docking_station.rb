@@ -12,7 +12,7 @@ class DockingStation
 
   def release_bike
     raise 'No bikes avalible' if empty?
-    bikes[0]
+    bikes.pop
   end
 
   def dock(bike)
