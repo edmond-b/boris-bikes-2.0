@@ -24,6 +24,12 @@ So I can decide whether to use the docking station
 I want to see a bike that has been docked
 ```
 
+```
+As a member of the public,
+So that I am not confused and charged unnecessarily,
+I'd like docking stations not to release bikes when there are none available.
+```
+
 ## Domain Model
 
 Objects | Messages
@@ -37,18 +43,7 @@ DockingStation | release_bike
 ```
 Bike <--working?--> true/false
 DockingStation <--release_bike--> a Bike
+DockingStation <--release_bike(if station empty)--> raise error
 DockingStation <--dock()--> a bike
 DockingStation <--bikes--> @bikes
 ```
-## Feature test
-> require './lib/docking_station.rb'
-
-> station = DockingStation.new
-
-> bike = station.release_bike
-
-> bike.working?
-
-> station.dock(bike)
-
-> station.bikes
