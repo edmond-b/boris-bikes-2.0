@@ -15,4 +15,11 @@ describe Bike do
       expect(subject.working?).to be(true)
     end
   end
+
+  describe '.report_broken' do
+    it 'can be reported as not working' do
+      subject.report_broken
+      expect(subject).to be_broken
+    end
+  end
 end

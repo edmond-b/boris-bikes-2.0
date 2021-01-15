@@ -12,6 +12,7 @@ class DockingStation
 
   def release_bike
     raise 'No bikes avalible' if empty?
+    raise 'No working bikes' if not_working?
     bikes.pop
   end
 
@@ -23,6 +24,10 @@ class DockingStation
 private
 
   attr_reader :bikes
+
+  def not_working?
+    bikes[0].broken?
+  end
 
   def full?
     bikes.length >= capacity
