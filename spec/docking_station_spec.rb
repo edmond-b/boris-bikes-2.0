@@ -1,7 +1,23 @@
 require 'docking_station'
 
 describe DockingStation do
+  describe '.bikes' do
+    it 'responds to .bikes method' do
+      expect(subject).to respond_to(:bikes)
+    end
+
+    it 'docked bike can be viewed later' do
+      bike = Bike.new
+      subject.dock(bike)
+      expect(subject.bikes).to eq([bike])
+    end
+  end
+
   describe '.release_bike' do
+    it 'responds to .release_bike method' do
+      expect(subject).to respond_to(:release_bike)
+    end
+
     it 'releases a docked bike' do
       bike = Bike.new
       subject.dock(bike)
@@ -27,26 +43,5 @@ describe DockingStation do
       20.times { subject.dock(Bike.new) }
       expect{subject.dock(Bike.new)}.to raise_error('Station is full')
     end
-  end
-
-  it 'responds to .release_bike method' do
-    expect(subject).to respond_to(:release_bike)
-  end
-
-  it 'releases a working bike from station' do
-    bike = Bike.new
-    subject.dock(bike)
-    subject.release_bike
-    expect(bike.working?).to be(true)
-  end
-
-  it 'responds to .bikes method' do
-    expect(subject).to respond_to(:bikes)
-  end
-
-  it 'docked bike can be viewed later' do
-    bike = Bike.new
-    subject.dock(bike)
-    expect(subject.bikes).to eq([bike])
   end
 end
