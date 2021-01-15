@@ -13,6 +13,22 @@ describe DockingStation do
     end
   end
 
+  describe '.dock()' do
+    it 'responds to .dock method' do
+      expect(subject).to respond_to(:dock).with(1).argument
+    end
+
+    it 'can dock bike object' do
+      bike = Bike.new
+      expect(subject.dock(bike)).to eq(bike)
+    end
+
+    it 'raises error when docking in full station' do
+      subject.dock(Bike.new)
+      expect{subject.dock(Bike.new)}.to raise_error('Station is full')
+    end
+  end
+
   it 'responds to .release_bike method' do
     expect(subject).to respond_to(:release_bike)
   end
@@ -22,15 +38,6 @@ describe DockingStation do
     subject.dock(bike)
     subject.release_bike
     expect(bike.working?).to be(true)
-  end
-
-  it 'responds to .dock method' do
-    expect(subject).to respond_to(:dock).with(1).argument
-  end
-
-  it 'can dock bike object' do
-    bike = Bike.new
-    expect(subject.dock(bike)).to eq(bike)
   end
 
   it 'responds to .bikes method' do
