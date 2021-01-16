@@ -7,11 +7,7 @@ describe Bike do
       expect(subject).to respond_to(:working?)
     end
 
-    it 'releases a working bike from station' do
-      # bike = Bike.new
-      # station = DockingStation.new
-      # station.dock(bike)
-      # station.release_bike
+    it 'bikes are working by default' do
       expect(subject.working?).to be(true)
     end
   end
