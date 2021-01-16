@@ -23,12 +23,6 @@ describe DockingStation do
   describe '.release_bike' do
     # bike = double(:bike, working?: true)
     let(:bike) { double :bike }
-    it 'releases a working bike from station' do
-      allow(bike).to receive(:working?).and_return(true)
-      subject.dock(bike)
-      released_bike = subject.release_bike
-      expect(released_bike).to be_working
-    end
 
     it 'does not release broken bikes' do
       allow(bike).to receive(:report_broken)
