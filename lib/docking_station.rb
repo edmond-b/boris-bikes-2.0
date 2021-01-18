@@ -1,4 +1,5 @@
 require_relative 'bike'
+require_relative 'van'
 
 class DockingStation
   DEFAULT_CAPACITY = 20
@@ -12,7 +13,7 @@ class DockingStation
 
   def release_bike
     raise 'No bikes avalible' if empty?
-    raise 'No working bikes' unless working?
+    raise 'No working bikes' unless any_working?
     bikes.pop
   end
 
@@ -25,8 +26,8 @@ private
 
   attr_reader :bikes
 
-  def working?
-    bikes[-1].working?
+  def any_working?
+    bikes.each { |bike| return bike.working? }
   end
 
   def full?

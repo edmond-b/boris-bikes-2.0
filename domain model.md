@@ -89,6 +89,9 @@ Bike | working?
 DockingStation | release_bike
  | dock()
  | bikes
+ Van | take_broken_bikes
+  | deliver_bikes
+  Garage | repair_bikes
 
 ```
 Bike <--working?--> true/false
