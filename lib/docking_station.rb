@@ -12,8 +12,7 @@ class DockingStation
   end
 
   def dock(bike)
-    raise 'Station is full' if full?
-    bikes << bike
+    add_bike(bike)
   end
 
 private
